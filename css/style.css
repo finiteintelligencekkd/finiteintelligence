@@ -784,6 +784,9 @@ a:focus {
 }
 
 .booking_page .workshop_list .workshop_item.workshop-selected {
+  opacity: 1;
+  transform: translateY(0);
+  animation-fill-mode: both;
   animation: workshopSelect 0.22s ease;
 }
 
@@ -913,15 +916,15 @@ a:focus {
 
 @keyframes workshopSelect {
   0% {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     box-shadow: 0 0 0 rgba(255, 204, 0, 0);
   }
   50% {
-    transform: scale(1.025);
+    transform: translateY(0) scale(1.025);
     box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.35);
   }
   100% {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     box-shadow: 0 0 0 rgba(255, 204, 0, 0);
   }
 }
