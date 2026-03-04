@@ -47,7 +47,7 @@
 
 @media (max-width: 576px) {
     .slider_section .detail-box h1 {
-        font-size: 2.25rem;
+        font-size: 2.45rem;
         letter-spacing: .14rem;
         line-height: 1.2;
         overflow-wrap: anywhere;
@@ -60,7 +60,7 @@
 
 @media (max-width: 420px) {
     .slider_section .detail-box h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         letter-spacing: .1rem;
     }
 }
