@@ -1,7 +1,11 @@
 body {
   font-family: 'Poppins', sans-serif;
-  color: #000000;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .layout_padding {
@@ -72,11 +76,16 @@ body {
   background-image: url(../images/hero-bg.jpg);
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
+  overflow: hidden;
+  perspective: 1100px;
+  position: relative;
+  isolation: isolate;
 }
 
 .logo {
   width: 150px;
-  height: 150px;
+  height: auto;
 }
 
 
@@ -180,10 +189,20 @@ a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+}
+
+.brand-logo {
+  width: min(210px, 48vw);
+  height: auto;
+  display: block;
 }
 
 .navbar-brand span {
@@ -239,6 +258,29 @@ a:focus {
 
 .slider_section .detail-box {
   text-align: center;
+}
+
+.hero-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+.hero-logo {
+  width: min(620px, 86vw);
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-logo-wrap p,
+.hero-logo-wrap .contactbutton {
+  position: relative;
+  z-index: 2;
 }
 
 .slider_section .detail-box h1,
@@ -305,10 +347,12 @@ a:focus {
 }
 
 .us_section {
-  background-image: url(../images/us-bg.jpg);
+  background-image: url(../images/hero-bg.jpg);
   background-size: cover;
+  background-position: center;
   background-attachment: fixed;
-  color: #000000;
+  background-repeat: no-repeat;
+  color: #ffffff;
 }
 
 .us_section .us_container {
@@ -586,7 +630,7 @@ a:focus {
 /* footer section*/
 .footer_section {
   background-color: #000000;
-  padding: 10px;
+  padding: 16px 10px;
   font-weight: 500;
 }
 
@@ -594,18 +638,46 @@ a:focus {
   color: #ffffff;
   margin: 0;
   text-align: center;
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.35;
 }
 
 .footer_section a {
   color: #ffffff;
 }
 
+.footer_company_name,
+.footer-company-name {
+  margin-top: 6px;
+  letter-spacing: 0;
+}
+
 
 .why {
   background-image: url(../images/hero-bg.jpg);
   background-size: cover;
+  background-position: center top;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #ffffff;
+}
+
+.workshop_page .hero_area {
+  background: transparent;
+  height: auto;
+  overflow: visible;
+  perspective: none;
+  isolation: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.workshop_page .why {
+  min-height: 100vh;
+  padding-top: 300px;
 }
 
 .why .us_container {
@@ -850,13 +922,16 @@ a:focus {
 }
 
 .reveal {
-  opacity: 1;
-  transform: none;
+  opacity: 0;
+  transform: translate3d(0, 34px, 0);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 .reveal.in-view {
   opacity: 1;
-  transform: none;
+  transform: translate3d(0, 0, 0);
 }
 
 @keyframes workshopCardIn {
@@ -1227,6 +1302,14 @@ body.popup_open {
 }
 
 @media (max-width: 767.98px) {
+  .brand-logo {
+    width: min(180px, 58vw);
+  }
+
+  .workshop_page .why {
+    padding-top: 220px;
+  }
+
   .booking_panel {
     padding: 20px;
   }
@@ -1253,6 +1336,19 @@ body.popup_open {
     padding: 24px 18px;
     border-radius: 16px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
 }
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */

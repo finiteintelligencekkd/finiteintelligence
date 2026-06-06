@@ -92,8 +92,66 @@
     });
   }
 
-  var revealItems = document.querySelectorAll(".reveal");
+  var revealSelectors = [
+    ".slider_section .detail-box > div",
+    ".heading_container",
+    ".us_container .box",
+    ".heathy_section .detail-box",
+    ".info_items .item",
+    ".booking_subtitle",
+    ".stat_card",
+    ".booking_panel",
+    ".printing_subtitle",
+    ".projects_subtitle",
+    ".printing_card",
+    ".projects_card",
+    ".contact_whatsapp_section p",
+    ".contact_whatsapp_link"
+  ];
+  var revealItems = [];
+
+  revealSelectors.forEach(function (selector) {
+    document.querySelectorAll(selector).forEach(function (item) {
+      if (revealItems.indexOf(item) === -1) {
+        revealItems.push(item);
+      }
+    });
+  });
+
+  document.querySelectorAll(".reveal").forEach(function (item) {
+    if (revealItems.indexOf(item) === -1) {
+      revealItems.push(item);
+    }
+  });
+
+  revealItems.forEach(function (item, index) {
+    item.classList.add("reveal");
+    item.style.setProperty("--reveal-delay", Math.min(index % 6, 5) * 80 + "ms");
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    revealItems.forEach(function (item) {
+      item.classList.add("in-view");
+    });
+    return;
+  }
+
+  var revealObserver = new IntersectionObserver(
+    function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
   revealItems.forEach(function (item) {
-    item.classList.add("in-view");
+    revealObserver.observe(item);
   });
 })();
