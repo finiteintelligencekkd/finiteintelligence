@@ -48,20 +48,26 @@ a {
 
 /* Header */
 #header-nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 3%; /* Reduced padding for a thinner navbar */
+  padding: 0.75rem 3%;
   z-index: 100;
   background: transparent; /* Transparent background so the video fills the top completely */
   font-family: 'Space Mono', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   color: var(--text-gray);
+}
+
+.nav-right {
+  position: fixed;
+  top: 2rem;
+  right: 3%;
 }
 
 .logo {
@@ -71,13 +77,23 @@ a {
   line-height: 1.2;
 }
 
-.nav-logo {
-  height: 40px; /* Base height fits within navbar */
-  width: auto;
+.nav-brand {
+  position: relative;
   display: block;
-  object-fit: contain;
-  transform: scale(1.52); /* Increased size by ~12.5% for desktop */
-  transform-origin: left center;
+  width: 144px;
+  aspect-ratio: 365 / 147;
+  overflow: hidden;
+}
+
+.nav-logo {
+  /* Show the artwork bounds (150, 93, 365, 147) inside the 666 × 375 PNG. */
+  position: absolute;
+  width: 182.465754%;
+  height: auto;
+  max-width: none;
+  left: -41.09589%;
+  top: -63.265306%;
+  display: block;
 }
 
 /* Hamburger Menu Button */
@@ -907,10 +923,6 @@ a {
 
 /* Tablet & Smaller Desktop */
 @media (max-width: 1024px) {
-  .nav-logo {
-    transform: scale(1.35); /* Keep previous size for tablet */
-  }
-
   .chapter-left { width: 30%; }
   .chapter-right { width: 70%; }
   
@@ -938,6 +950,11 @@ a {
     justify-content: space-between;
   }
 
+  .nav-right {
+    top: 1.5rem;
+    right: 1rem;
+  }
+
   .nav-center {
     flex-wrap: wrap;
     justify-content: center;
@@ -948,8 +965,8 @@ a {
     font-size: 0.75rem;
   }
 
-  .nav-logo {
-    transform: scale(1.75); /* Increased mobile size by ~30% */
+  .nav-brand {
+    width: 120px;
   }
 
   /* Hero Section */
